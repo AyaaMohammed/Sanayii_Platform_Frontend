@@ -1,0 +1,99 @@
+<section class="edit-profile-section">
+
+  <div class="edit-profile-container">
+    @if (isLoading) {
+      <div class="loading-spinner">Loading...</div>
+    } @else if (error) {
+      <div class="error-alert">{{ error }}</div>
+    } @else {
+
+    <div class="profile-image-container">
+      <img src="/assets/images/edit.jpg" alt="Edit illustration" />
+    </div>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-form"  enctype="multipart/form-data">
+      <h2 class="section-title">Edit Profile</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" formControlName="fName" placeholder="Enter first name">
+          @if (editForm.get('fName')?.invalid && editForm.get('fName')?.touched) {
+            <div class="error-message">First name is required</div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input type="text" class="form-control" formControlName="city" placeholder="Enter city">
+          @if (editForm.get('city')?.invalid && editForm.get('city')?.touched) {
+            <div class="error-message">City is required</div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" formControlName="lName" placeholder="Enter last name">
+          @if (editForm.get('lName')?.invalid && editForm.get('lName')?.touched) {
+            <div class="error-message">Last name is required</div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">Street</label>
+          <input type="text" class="form-control" formControlName="street" placeholder="Enter street">
+          @if (editForm.get('street')?.invalid && editForm.get('street')?.touched) {
+            <div class="error-message">Street is required</div>
+          }
+        </div>
+
+        <div class="form-group" style="flex: 0 0 100%;">
+          <label class="form-label">Age</label>
+          <input type="number" class="form-control" formControlName="age" placeholder="Enter age">
+          @if (editForm.get('age')?.invalid && editForm.get('age')?.touched) {
+            <div class="error-message">
+              @if (editForm.get('age')?.errors?.['required']) {
+                Age is required
+              } @else if (editForm.get('age')?.errors?.['min']) {
+                Must be at least 18 years old
+              }
+            </div>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+          @if (editForm.get('email')?.invalid && editForm.get('email')?.touched) {
+            <div class="error-message">
+              @if (editForm.get('email')?.errors?.['required']) {
+                Email is required
+              } @else if (editForm.get('email')?.errors?.['email']) {
+                Please enter a valid email
+              }
+            </div>
+          }
+        </div>
+        <div formArrayName="userPhones">
+          <label class="form-label">Phone Numbers</label>
+          <div *ngFor="let phone of userPhones.controls; let i = index">
+            <input class="form-control" [formControlName]="i" type="text" />
+            <button type="button" class="btn btn-danger btn-sm mt-1 mb-1 d-block" (click)="removePhoneInput(i)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" (click)="addPhoneInput()">Add Phone Number</button>
+        </div>
+
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary save" [disabled]="editForm.invalid || isLoading">
+          @if (isLoading) {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Saving...
+          } @else {
+            Save Changes
+          }
+        </button>
+
+      </div>
+    </form>
+  }
+</div>
+
+</section>

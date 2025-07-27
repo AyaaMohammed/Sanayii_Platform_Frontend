@@ -1,0 +1,146 @@
+<div class="container my-5">
+
+  <div class="mt-5 pt-3"></div>
+
+  <div class="text-center mb-5 pt-4">
+    <h1 class="mb-4" style="color: #2980b9;">Checkout</h1>
+    <div class="d-flex justify-content-center">
+      <div class="stepper">
+        <div class="step completed">
+          <div class="step-circle">1</div>
+          <div class="step-label">Service Details</div>
+        </div>
+        <div class="step completed">
+          <div class="step-circle">2</div>
+          <div class="step-label">Schedule</div>
+        </div>
+        <div class="step active">
+          <div class="step-circle">3</div>
+          <div class="step-label">Checkout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Left Column - Order Summary -->
+    <div class="col-lg-8">
+      <!-- Service Card with more spacing -->
+      <div class="card border-0 shadow-sm rounded-3 mb-5">
+        <div class="card-header text-white py-3 rounded-top-3" style="background-color: #2980b9;">
+          <h5 class="mb-0"><mat-icon>receipt</mat-icon> Order Summary</h5>
+        </div>
+        <div class="card-body">
+          <!-- Service Details -->
+          <div class="mb-5 pb-3 border-bottom">
+
+            <div class="d-flex align-items-start">
+              <mat-icon class="service-icon rounded-3 me-3">build_circle</mat-icon>
+              <div>
+                <h5 class="mb-2">{{ SerDTO?.serviceName }}</h5>
+                <p class="text-muted mb-2">{{ SerDTO?.description }}</p>
+                <div class="d-flex align-items-center text-muted">
+                  <mat-icon style="font-size: 18px;">schedule</mat-icon>
+                  <span class="ms-1">1-2 hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedule Details -->
+          <div class="mb-5 pb-3 border-bottom">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center bg-light p-3 rounded-2">
+                  <mat-icon class="text-primary me-2">calendar_today</mat-icon>
+                  <div>
+                    <div class="small text-muted">Date</div>
+                    <div class="fw-bold">{{ SerDTO?.requestDate | date:'yyyy-MM-dd' }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-center bg-light p-3 rounded-2">
+                  <mat-icon class="me-2" style="color: #2980b9;">access_time</mat-icon>
+                  <div>
+                    <div class="small text-muted">Time</div>
+                    <div class="fw-bold">{{ SerDTO?.requestDate | date:'shortTime' }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Details -->
+          <div class="mb-4">
+            <div class="d-flex align-items-start bg-light p-3 rounded-2">
+              <mat-icon class="text-primary me-2">location_on</mat-icon>
+              <div>
+                <div class="fw-bold">Home Address</div>
+                <div class="text-muted">{{SerDTO?.customerStreet}}, </div>
+                <div class="text-muted">{{SerDTO?.customerGovernment}} --{{SerDTO?.customerCity}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+    </div>
+
+
+
+
+    <!-- Right Column - Order Total -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm rounded-3 sticky-md-top" style="top: 100px;">
+        <div class="card-header text-white py-3 rounded-top-3" style="background-color: #2980b9;">
+          <h5 class="mb-0"><mat-icon>shopping_cart</mat-icon> Order Total</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-3">
+              <span>Inspection Fee</span>
+              <span>{{price}} EGP</span>
+            </div>
+            <div class="d-flex justify-content-between fw-bold fs-5 mt-4 pt-3 border-top">
+              <span>Total</span>
+              <span>{{price}} EGP</span>
+            </div>
+          </div>
+
+          <!-- Promo Code
+          <div class="mb-4">
+            <label for="promoCode" class="form-label">Promo Code</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="promoCode" placeholder="Enter code">
+              <button class="btn btn-outline-primary" type="button">Apply</button>
+            </div>
+          </div> -->
+
+          <!-- Terms and Conditions -->
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="termsCheck">
+            <label class="form-check-label small" for="termsCheck">
+              I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+            </label>
+          </div>
+
+          <!-- Checkout Button -->
+          <button mat-raised-button color="primary" class="w-100 py-3 mb-3" (click)="pay()">
+            <mat-icon>lock</mat-icon> Confirm & Pay
+          </button>
+
+          <!-- Security Info -->
+          <div class="text-center mt-3">
+            <div class="d-flex justify-content-center align-items-center text-muted small">
+              <mat-icon style="font-size: 16px;" class="me-1">security</mat-icon>
+              <span>Secure SSL Encryption</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

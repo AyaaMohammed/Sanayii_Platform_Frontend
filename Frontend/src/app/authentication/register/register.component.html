@@ -1,0 +1,113 @@
+
+<head>
+  <title>Registration</title>
+</head>
+  <div class="register">
+
+    <div class="register-img"></div>
+
+    <div class="register-form">
+      <h3>Create Account</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <input type="text" class="form-control" formControlName="userName" id="username" placeholder="Username" >
+          <div *ngIf="userName?.touched && userName?.invalid" class="text-danger mt-1">
+            <div *ngIf="userName?.errors?.['required']">Username is required.</div>
+            <div *ngIf="userName?.errors?.['minlength']">Username must be at least 3 characters.</div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6 mb-2 mb-md-0">
+            <input type="text" class="form-control" formControlName="fName" id="fname" placeholder="First Name" required>
+            <div *ngIf="fName?.touched && fName?.invalid" class="text-danger mt-1">
+              <div *ngIf="fName?.errors?.['required']">fName is required.</div>
+              <div *ngIf="fName?.errors?.['minlength']">fName must be at least 3 characters.</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="lName" id="lname" placeholder="Last Name" required>
+            <div *ngIf="lName?.touched && lName?.invalid" class="text-danger mt-1">
+              <div *ngIf="lName?.errors?.['required']">last name is required.</div>
+              <div *ngIf="lName?.errors?.['minlength']">last name must be at least 3 characters.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3" formArrayName="phoneNumbers">
+          <button type="button" (click)="addPhoneNumber()" class="btn btn-secondary mb-2">Add Number</button>
+
+          <div *ngFor="let control of phoneNumbers.controls; let i = index">
+            <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Phone number {{i + 1}}" />
+            <div *ngIf="control.touched && control.invalid" class="text-danger">
+              <div *ngIf="control.errors?.['required']">Phone number is required.</div>
+              <div *ngIf="control.errors?.['pattern']">Invalid phone number.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 mb-2 mb-md-0">
+            <input type="text" class="form-control" formControlName="street" id="street" placeholder="Street" required>
+            <div *ngIf="street?.touched && street?.invalid" class="text-danger mt-1">
+              <div *ngIf="street?.errors?.['required']">Street is required.</div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 mb-md-0">
+            <input type="text" class="form-control" formControlName="city" id="city" placeholder="City" required>
+            <div *ngIf="city?.touched && city?.invalid" class="text-danger mt-1">
+              <div *ngIf="city?.errors?.['required']">City is required.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <select id="governate" class="form-select" formControlName="government" required>
+              <option value="" disabled selected>Government</option>
+              <option>Alexandria</option>
+              <option>Cairo</option>
+              <option>Giza</option>
+              <option>Sharkia</option>
+              <option>Luxor</option>
+              <option>Aswan</option>
+              <option>Dakahlia</option>
+            </select>
+            <div *ngIf="government?.touched && government?.invalid" class="text-danger mt-1">
+              <div *ngIf="government?.errors?.['required']">Government is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" required>
+          <div *ngIf="email?.touched && email?.invalid" class="text-danger mt-1">
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password" required>
+          <div *ngIf="password?.touched && password?.invalid" class="text-danger mt-1">
+            <div *ngIf="password?.errors?.['required']">Password is required.</div>
+            <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" formControlName="confirmPassword" id="Conpassword" placeholder="Confirm Password" required>
+          <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid" class="text-danger mt-1">
+            <div *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required.</div>
+            <div *ngIf="confirmPassword?.errors?.['mustMatch']">Passwords must match.</div>
+          </div>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" [disabled]="registerForm.invalid" class="btn" style="background-color: #2980b9; color:white">Register</button>
+        </div>
+
+        <div class="text-center mt-3">
+          <small>Already have an account? <a routerLink="/login" style="font-size: 18px;"><strong>Login</strong></a></small>
+        </div>
+      </form>
+    </div>
+
+  </div>

@@ -1,0 +1,77 @@
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+  <div class="login">
+    <div class="login-img"></div>
+    <div class="login-form">
+      <h3>Login</h3>
+      <p style ="text-align: center;">Test Data</p>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" class="form-control" formControlName="username" placeholder="UserName" value="TestProject"/>
+          </div>
+          <div *ngIf="username?.touched && username?.invalid" class="text-danger mt-1">
+            <div *ngIf="username?.errors?.['required']">Username is required.</div>
+            <div *ngIf="username?.errors?.['minlength']">Username at least 3 characters.</div>
+          </div>
+      </div>
+
+
+        <div class="form-group">
+          <div class="input-wrapper">
+          <i  class="fas fa-envelope"></i>
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" value="ayamohammednafed@gmail.com">
+          </div>
+          <div *ngIf="email?.touched && email?.invalid" class="text-danger mt-1">
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" value="Test@123">
+          </div>
+          <div *ngIf="password?.touched && password?.invalid" class="text-danger mt-1">
+            <div *ngIf="password?.errors?.['required']">password is required.</div>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" formControlName="rememberMe" id="rememberMe">
+          <label class="form-check-label" for="rememberMe">Remember me</label>
+        </div>
+        <div *ngIf="errorMessage" class="error">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary w-100 btn-login" >Log in</button>
+
+        <div class="forgot-password mt-2 text-center">
+          <a routerLink="/forgot-password" style="text-decoration: none; color: #007bff;">Forgot Password?</a>
+        </div>
+
+        <div class="create-account mt-3 d-flex align-items-center justify-content-center" >
+          <p>Don't have account? <a routerLink="/register" style="text-align: center;">Create one</a></p>
+        </div>
+
+        <div class="social-login">
+          <p>Or log in with:</p>
+          <div class="social-icons">
+            <button type="button" class="social-icon" title="Login with Google" (click)="loginWithGoogle()">
+              <i class="fab fa-google fa-2x"></i>
+            </button>
+            <!-- <button type="button" class="social-icon" title="Login with Facebook" (click)="loginWithFacebook()">
+              <i class="fab fa-facebook fa-2x"></i>
+            </button> -->
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+

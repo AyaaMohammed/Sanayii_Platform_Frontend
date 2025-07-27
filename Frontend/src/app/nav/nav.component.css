@@ -1,0 +1,104 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.notification-icon {
+  position: relative;
+}
+.notification-icon .icon{
+  color: #2980b9;
+  font-size: 25px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: crimson;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* start nav */
+.head{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1150;
+  padding:10px 50px;
+  justify-content: space-between;
+}
+ul{
+  margin-right: 25px;
+  align-items: center;
+}
+
+.logoImg{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+.head a{
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 3px;
+
+}
+.head .link:hover{
+  color: black;
+  background-color: lightgray;
+}
+.head .pro img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.active{
+  color: black;
+  background-color: lightgray;
+}
+.auth-buttons{
+  display: flex;
+}
+.auth-buttons .btn {
+  background-color: #2980b9;
+  border: 2px solid white;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 8px;
+  padding: 5px 15px;
+  text-decoration: none;
+  border-radius: 9px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.auth-buttons .btn:hover  {
+  background-color: transparent;
+  border-color: #2980b9;
+  color: #2980b9;
+}
+
+
+@media (max-width: 808px) {
+  .head{
+  padding: 10px;
+  }
+  .logoImg{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+  .head .pro img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  .notification-icon .icon{
+    font-size: 20px;
+  }
+}
